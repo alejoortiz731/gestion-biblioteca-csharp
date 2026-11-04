@@ -47,18 +47,10 @@ class Program
                         ShowSearchReportsMenu();
                         break;
                     case 5:
-                        Console.WriteLine("\n[Stub] Abriendo módulo de Guardar / Cargar datos...");
-                        Console.ReadKey();
+                        ShowPersistenceMenu();
                         break;
                     case 6:
-                        Console.Write("\n¿Guardar antes de salir? (S/N): ");
-                        string confirm = Console.ReadLine();
-                        if (confirm?.Trim().ToUpper() == "S")
-                        {
-                            Console.WriteLine("Guardando datos simulados...");
-                        }
-                        exit = true;
-                        Console.WriteLine("Saliendo del sistema. ¡Hasta luego!");
+                        HandleExitFlow(ref exit);
                         break;
                     default:
                         Console.WriteLine("\nOpción no válida. Por favor elija un número entre 1 y 6.");
@@ -75,6 +67,33 @@ class Program
             }
 
         } while (!exit);
+    }
+
+    // ==========================================
+    // FLUJO DE SALIDA (EXIT FLOW)
+    // ==========================================
+    static void HandleExitFlow(ref bool exit)
+    {
+        Console.Clear();
+        Console.WriteLine("========================================");
+        Console.WriteLine("           SALIR DEL SISTEMA            ");
+        Console.WriteLine("========================================");
+        Console.Write("¿Desea guardar los cambios antes de salir? (S/N): ");
+        string confirm = Console.ReadLine();
+
+        if (confirm?.Trim().ToUpper() == "S")
+        {
+            Console.WriteLine("\n[Acción] Guardando datos de forma simulada en archivos...");
+            Console.WriteLine("¡Datos guardados con éxito!");
+        }
+        else
+        {
+            Console.WriteLine("\n[Aviso] Saliendo sin guardar los últimos cambios...");
+        }
+
+        exit = true;
+        Console.WriteLine("\nSaliendo del sistema Gestor de Biblioteca. ¡Hasta luego!");
+        Console.ReadKey();
     }
 
     // ==========================================
@@ -694,6 +713,70 @@ class Program
         Console.Clear();
         Console.WriteLine("=== REPORTE: PRÉSTAMOS VENCIDOS ===");
         Console.WriteLine("[Acción] Consultando préstamos que exceden la fecha límite...");
+        Console.ReadKey();
+    }
+
+    // ==========================================
+    // 5. MÓDULO DE PERSISTENCIA (GUARDAR / CARGAR)
+    // ==========================================
+    static void ShowPersistenceMenu()
+    {
+        bool back = false;
+
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("========================================");
+            Console.WriteLine("        GUARDAR / CARGAR DATOS          ");
+            Console.WriteLine("========================================");
+            Console.WriteLine("1. Guardar datos en archivo (Simulado)");
+            Console.WriteLine("2. Cargar datos desde archivo (Simulado)");
+            Console.WriteLine("3. Volver al menú principal");
+            Console.Write("\nSeleccione una opción (1-3): ");
+
+            string input = Console.ReadLine();
+
+            if (int.TryParse(input, out int option))
+            {
+                switch (option)
+                {
+                    case 1:
+                        SaveDataToFile();
+                        break;
+                    case 2:
+                        LoadDataFromFile();
+                        break;
+                    case 3:
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("\nOpción no válida. Elija entre 1 y 3.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nEntrada inválida. Ingrese un número.");
+                Console.ReadKey();
+            }
+
+        } while (!back);
+    }
+
+    static void SaveDataToFile()
+    {
+        Console.Clear();
+        Console.WriteLine("=== GUARDAR DATOS ===");
+        Console.WriteLine("[Acción] Serializando y guardando catálogos (Libros, Usuarios, Préstamos)...");
+        Console.ReadKey();
+    }
+
+    static void LoadDataFromFile()
+    {
+        Console.Clear();
+        Console.WriteLine("=== CARGAR DATOS ===");
+        Console.WriteLine("[Acción] Leyendo y cargando información desde archivos simulados...");
         Console.ReadKey();
     }
 }
