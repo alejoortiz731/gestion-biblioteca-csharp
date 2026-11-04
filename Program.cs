@@ -44,8 +44,7 @@ class Program
                         ShowLoansMenu();
                         break;
                     case 4:
-                        Console.WriteLine("\n[Stub] Abriendo módulo de Búsquedas y reportes...");
-                        Console.ReadKey();
+                        ShowSearchReportsMenu();
                         break;
                     case 5:
                         Console.WriteLine("\n[Stub] Abriendo módulo de Guardar / Cargar datos...");
@@ -607,6 +606,94 @@ class Program
         Console.Clear();
         Console.WriteLine("=== ELIMINAR PRÉSTAMO ===");
         Console.WriteLine("[Acción] Eliminando préstamo según reglas del sistema.");
+        Console.ReadKey();
+    }
+
+    // ==========================================
+    // 4. MÓDULO DE BÚSQUEDAS Y REPORTES
+    // ==========================================
+    static void ShowSearchReportsMenu()
+    {
+        bool back = false;
+
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("========================================");
+            Console.WriteLine("         BÚSQUEDAS Y REPORTES           ");
+            Console.WriteLine("========================================");
+            Console.WriteLine("1. Buscar libros por título o autor");
+            Console.WriteLine("2. Buscar usuario por documento o nombre");
+            Console.WriteLine("3. Reporte de libros más prestados");
+            Console.WriteLine("4. Reporte de multas o préstamos vencidos");
+            Console.WriteLine("5. Volver al menú principal");
+            Console.Write("\nSeleccione una opción (1-5): ");
+
+            string input = Console.ReadLine();
+
+            if (int.TryParse(input, out int option))
+            {
+                switch (option)
+                {
+                    case 1:
+                        SearchBooks();
+                        break;
+                    case 2:
+                        SearchUsers();
+                        break;
+                    case 3:
+                        ReportMostBorrowedBooks();
+                        break;
+                    case 4:
+                        ReportOverdueLoans();
+                        break;
+                    case 5:
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("\nOpción no válida. Elija entre 1 y 5.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nEntrada inválida. Ingrese un número.");
+                Console.ReadKey();
+            }
+
+        } while (!back);
+    }
+
+    static void SearchBooks()
+    {
+        Console.Clear();
+        Console.WriteLine("=== BUSCAR LIBROS ===");
+        Console.WriteLine("[Acción] Buscando libros por coincidencia de título o autor...");
+        Console.ReadKey();
+    }
+
+    static void SearchUsers()
+    {
+        Console.Clear();
+        Console.WriteLine("=== BUSCAR USUARIOS ===");
+        Console.WriteLine("[Acción] Buscando usuarios por documento o nombre...");
+        Console.ReadKey();
+    }
+
+    static void ReportMostBorrowedBooks()
+    {
+        Console.Clear();
+        Console.WriteLine("=== REPORTE: LIBROS MÁS PRESTADOS ===");
+        Console.WriteLine("[Acción] Generando reporte estadístico de libros...");
+        Console.ReadKey();
+    }
+
+    static void ReportOverdueLoans()
+    {
+        Console.Clear();
+        Console.WriteLine("=== REPORTE: PRÉSTAMOS VENCIDOS ===");
+        Console.WriteLine("[Acción] Consultando préstamos que exceden la fecha límite...");
         Console.ReadKey();
     }
 }
