@@ -7,6 +7,9 @@ class Program
         ShowMainMenu();
     }
 
+    // ==========================================
+    // MENÚ PRINCIPAL
+    // ==========================================
     static void ShowMainMenu()
     {
         bool exit = false;
@@ -32,8 +35,7 @@ class Program
                 switch (option)
                 {
                     case 1:
-                        Console.WriteLine("\n[Stub] Abriendo módulo de Libros...");
-                        Console.ReadKey();
+                        ShowBooksMenu();
                         break;
                     case 2:
                         Console.WriteLine("\n[Stub] Abriendo módulo de Usuarios...");
@@ -76,5 +78,221 @@ class Program
             }
 
         } while (!exit);
+    }
+
+    // ==========================================
+    // 1. MÓDULO DE LIBROS
+    // ==========================================
+    static void ShowBooksMenu()
+    {
+        bool back = false;
+
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("========================================");
+            Console.WriteLine("            GESTIÓN DE LIBROS           ");
+            Console.WriteLine("========================================");
+            Console.WriteLine("1. Registrar libro");
+            Console.WriteLine("2. Listar libros");
+            Console.WriteLine("3. Ver detalle (por ID/ISBN)");
+            Console.WriteLine("4. Actualizar libro");
+            Console.WriteLine("5. Eliminar libro");
+            Console.WriteLine("6. Volver al menú principal");
+            Console.Write("\nSeleccione una opción (1-6): ");
+
+            string input = Console.ReadLine();
+
+            if (int.TryParse(input, out int option))
+            {
+                switch (option)
+                {
+                    case 1:
+                        RegisterBook();
+                        break;
+                    case 2:
+                        ListBooksMenu();
+                        break;
+                    case 3:
+                        ViewBookDetail();
+                        break;
+                    case 4:
+                        UpdateBookMenu();
+                        break;
+                    case 5:
+                        DeleteBook();
+                        break;
+                    case 6:
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("\nOpción no válida. Elija entre 1 y 6.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nEntrada inválida. Ingrese un número.");
+                Console.ReadKey();
+            }
+
+        } while (!back);
+    }
+
+    // Funciones del Submenú Libros
+    static void RegisterBook()
+    {
+        Console.Clear();
+        Console.WriteLine("=== REGISTRAR LIBRO ===");
+        Console.WriteLine("[Acción] Registrando un nuevo libro en el sistema (Simulación)...");
+        Console.WriteLine("\nPresione cualquier tecla para volver...");
+        Console.ReadKey();
+    }
+
+    static void ListBooksMenu()
+    {
+        bool back = false;
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("=== LISTAR LIBROS ===");
+            Console.WriteLine("1. Listar todos");
+            Console.WriteLine("2. Listar disponibles");
+            Console.WriteLine("3. Listar prestados");
+            Console.WriteLine("4. Volver al menú de libros");
+            Console.Write("\nSeleccione una opción (1-4): ");
+
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int option))
+            {
+                switch (option)
+                {
+                    case 1:
+                        ListBooksAll();
+                        break;
+                    case 2:
+                        ListBooksAvailable();
+                        break;
+                    case 3:
+                        ListBooksBorrowed();
+                        break;
+                    case 4:
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("\nOpción no válida.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nEntrada inválida.");
+                Console.ReadKey();
+            }
+        } while (!back);
+    }
+
+    static void ListBooksAll()
+    {
+        Console.Clear();
+        Console.WriteLine("[Acción] Mostrando el listado completo de libros...");
+        Console.ReadKey();
+    }
+
+    static void ListBooksAvailable()
+    {
+        Console.Clear();
+        Console.WriteLine("[Acción] Mostrando únicamente los libros disponibles...");
+        Console.ReadKey();
+    }
+
+    static void ListBooksBorrowed()
+    {
+        Console.Clear();
+        Console.WriteLine("[Acción] Mostrando únicamente los libros actualmente prestados...");
+        Console.ReadKey();
+    }
+
+    static void ViewBookDetail()
+    {
+        Console.Clear();
+        Console.WriteLine("=== VER DETALLE DE LIBRO ===");
+        Console.WriteLine("[Acción] Buscando y mostrando el detalle del libro por ID/ISBN...");
+        Console.ReadKey();
+    }
+
+    static void UpdateBookMenu()
+    {
+        bool back = false;
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("=== ACTUALIZAR LIBRO ===");
+            Console.WriteLine("1. Editar título");
+            Console.WriteLine("2. Editar autor");
+            Console.WriteLine("3. Editar año / categoría");
+            Console.WriteLine("4. Volver al menú de libros");
+            Console.Write("\nSeleccione una opción (1-4): ");
+
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int option))
+            {
+                switch (option)
+                {
+                    case 1:
+                        EditBookTitle();
+                        break;
+                    case 2:
+                        EditBookAuthor();
+                        break;
+                    case 3:
+                        EditBookYearCategory();
+                        break;
+                    case 4:
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("\nOpción no válida.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nEntrada inválida.");
+                Console.ReadKey();
+            }
+        } while (!back);
+    }
+
+    static void EditBookTitle()
+    {
+        Console.Clear();
+        Console.WriteLine("[Acción] Actualizando título del libro...");
+        Console.ReadKey();
+    }
+
+    static void EditBookAuthor()
+    {
+        Console.Clear();
+        Console.WriteLine("[Acción] Actualizando autor del libro...");
+        Console.ReadKey();
+    }
+
+    static void EditBookYearCategory()
+    {
+        Console.Clear();
+        Console.WriteLine("[Acción] Actualizando año / categoría del libro...");
+        Console.ReadKey();
+    }
+
+    static void DeleteBook()
+    {
+        Console.Clear();
+        Console.WriteLine("=== ELIMINAR LIBRO ===");
+        Console.WriteLine("[Acción] Validar no permitir eliminar si el libro se encuentra prestado.");
+        Console.ReadKey();
     }
 }
