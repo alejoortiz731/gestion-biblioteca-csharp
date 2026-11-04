@@ -50,7 +50,7 @@ class Program
                         ShowPersistenceMenu();
                         break;
                     case 6:
-                        HandleExitFlow(ref exit);
+                        HandleExitFlow(ref exit); 
                         break;
                     default:
                         Console.WriteLine("\nOpción no válida. Por favor elija un número entre 1 y 6.");
