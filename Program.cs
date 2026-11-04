@@ -38,8 +38,7 @@ class Program
                         ShowBooksMenu();
                         break;
                     case 2:
-                        Console.WriteLine("\n[Stub] Abriendo módulo de Usuarios...");
-                        Console.ReadKey();
+                        ShowUsersMenu();
                         break;
                     case 3:
                         Console.WriteLine("\n[Stub] Abriendo módulo de Préstamos...");
@@ -140,13 +139,11 @@ class Program
         } while (!back);
     }
 
-    // Funciones del Submenú Libros
     static void RegisterBook()
     {
         Console.Clear();
         Console.WriteLine("=== REGISTRAR LIBRO ===");
         Console.WriteLine("[Acción] Registrando un nuevo libro en el sistema (Simulación)...");
-        Console.WriteLine("\nPresione cualquier tecla para volver...");
         Console.ReadKey();
     }
 
@@ -293,6 +290,163 @@ class Program
         Console.Clear();
         Console.WriteLine("=== ELIMINAR LIBRO ===");
         Console.WriteLine("[Acción] Validar no permitir eliminar si el libro se encuentra prestado.");
+        Console.ReadKey();
+    }
+
+    // ==========================================
+    // 2. MÓDULO DE USUARIOS
+    // ==========================================
+    static void ShowUsersMenu()
+    {
+        bool back = false;
+
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("========================================");
+            Console.WriteLine("           GESTIÓN DE USUARIOS          ");
+            Console.WriteLine("========================================");
+            Console.WriteLine("1. Registrar usuario");
+            Console.WriteLine("2. Listar usuarios");
+            Console.WriteLine("3. Ver detalle (por ID/documento)");
+            Console.WriteLine("4. Actualizar usuario");
+            Console.WriteLine("5. Eliminar usuario");
+            Console.WriteLine("6. Volver al menú principal");
+            Console.Write("\nSeleccione una opción (1-6): ");
+
+            string input = Console.ReadLine();
+
+            if (int.TryParse(input, out int option))
+            {
+                switch (option)
+                {
+                    case 1:
+                        RegisterUser();
+                        break;
+                    case 2:
+                        ListUsers();
+                        break;
+                    case 3:
+                        ViewUserDetail();
+                        break;
+                    case 4:
+                        UpdateUserMenu();
+                        break;
+                    case 5:
+                        DeleteUser();
+                        break;
+                    case 6:
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("\nOpción no válida. Elija entre 1 y 6.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nEntrada inválida. Ingrese un número.");
+                Console.ReadKey();
+            }
+
+        } while (!back);
+    }
+
+    static void RegisterUser()
+    {
+        Console.Clear();
+        Console.WriteLine("=== REGISTRAR USUARIO ===");
+        Console.WriteLine("[Acción] Registrando un nuevo usuario en el sistema (Simulación)...");
+        Console.ReadKey();
+    }
+
+    static void ListUsers()
+    {
+        Console.Clear();
+        Console.WriteLine("=== LISTAR USUARIOS ===");
+        Console.WriteLine("[Acción] Mostrando el listado completo de usuarios registrados...");
+        Console.ReadKey();
+    }
+
+    static void ViewUserDetail()
+    {
+        Console.Clear();
+        Console.WriteLine("=== VER DETALLE DE USUARIO ===");
+        Console.WriteLine("[Acción] Buscando y mostrando el detalle del usuario por ID o documento...");
+        Console.ReadKey();
+    }
+
+    static void UpdateUserMenu()
+    {
+        bool back = false;
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("=== ACTUALIZAR USUARIO ===");
+            Console.WriteLine("1. Editar nombre");
+            Console.WriteLine("2. Editar contacto");
+            Console.WriteLine("3. Activar / desactivar usuario");
+            Console.WriteLine("4. Volver al menú de usuarios");
+            Console.Write("\nSeleccione una opción (1-4): ");
+
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int option))
+            {
+                switch (option)
+                {
+                    case 1:
+                        EditUserName();
+                        break;
+                    case 2:
+                        EditUserContact();
+                        break;
+                    case 3:
+                        ToggleUserActiveStatus();
+                        break;
+                    case 4:
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("\nOpción no válida.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nEntrada inválida.");
+                Console.ReadKey();
+            }
+        } while (!back);
+    }
+
+    static void EditUserName()
+    {
+        Console.Clear();
+        Console.WriteLine("[Acción] Actualizando el nombre del usuario...");
+        Console.ReadKey();
+    }
+
+    static void EditUserContact()
+    {
+        Console.Clear();
+        Console.WriteLine("[Acción] Actualizando la información de contacto del usuario...");
+        Console.ReadKey();
+    }
+
+    static void ToggleUserActiveStatus()
+    {
+        Console.Clear();
+        Console.WriteLine("[Acción] Cambiando estado (Activo / Desactivar) del usuario...");
+        Console.ReadKey();
+    }
+
+    static void DeleteUser()
+    {
+        Console.Clear();
+        Console.WriteLine("=== ELIMINAR USUARIO ===");
+        Console.WriteLine("[Acción] Validar no permitir eliminar si el usuario tiene préstamos activos.");
         Console.ReadKey();
     }
 }
