@@ -53,5 +53,21 @@ namespace SystemBooks.Services
         {
             return _usuarios.OrderBy(u => u.Nombre).ToList();
         }
+
+        // 4. KPIs y estadísticas
+        public int TotalUsuarios()
+        {
+            return _usuarios.Count;
+        }
+
+        public int ContarUsuariosActivos()
+        {
+            return _usuarios.Count(u => u.Activo);
+        }
+
+        public int ContarUsuariosInactivos()
+        {
+            return _usuarios.Count(u => !u.Activo);
+        }
     }
 }

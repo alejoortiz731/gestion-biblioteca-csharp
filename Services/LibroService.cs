@@ -68,5 +68,21 @@ namespace SystemBooks.Services
                 ? _libros.OrderByDescending(l => l.AnioPublicacion).ToList()
                 : _libros.OrderBy(l => l.AnioPublicacion).ToList();
         }
+
+        // 4. KPIs y estadísticas
+        public int TotalLibros()
+        {
+            return _libros.Count;
+        }
+
+        public int ContarLibrosDisponibles()
+        {
+            return _libros.Count(l => l.Disponible);
+        }
+
+        public int ContarLibrosPrestados()
+        {
+            return _libros.Count(l => !l.Disponible);
+        }
     }
 }

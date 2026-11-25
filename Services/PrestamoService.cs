@@ -52,5 +52,32 @@ namespace SystemBooks.Services
                 ? _prestamos.OrderByDescending(p => p.FechaPrestamo.AddDays(DiasLimitePrestamo)).ToList()
                 : _prestamos.OrderBy(p => p.FechaPrestamo.AddDays(DiasLimitePrestamo)).ToList();
         }
+
+        // 4. KPIs y estadísticas
+        public int TotalPrestamos()
+        {
+            return _prestamos.Count;
+        }
+
+        public int ContarPrestamosActivos()
+        {
+            return _prestamos.Count(p => p.Estado == EstadoPrestamo.Activo && !p.EstaVencido());
+        }
+
+        public int ContarPrestamosVencidos()
+        {
+            return _prestamos.Count(p => p.EstaVencido());
+        }
+
+        public int ContarPrestamosDevueltos()
+        {
+            return _prestamos.Count(p => p.Estado == EstadoPrestamo.Devuelto);
+        }
+
+        public double PromedioDiasPrestamo()
+        {
+            if (_prestamos.Count == 0) return 0;
+            return _prestamos.Average(p => p.DiasTranscurridos());
+        }
     }
 }
